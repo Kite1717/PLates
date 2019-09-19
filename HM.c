@@ -122,6 +122,47 @@ plateInfo input()
 	}
 	return *p;
 }
+int addPlate(plates *plates , plateInfo p)
+{
+	int i,flag=1;
+	//initialization plate struct
+	if(plates[p.plateCode].plateCount == 0)
+	{
+  		plates[p.plateCode].cityPlates = (plateInfo*)calloc(1,(sizeof(plateInfo)));
+		plates[p.plateCode].cityPlates[0].plateCode = p.plateCode;
+  		strcpy(plates[p.plateCode].cityPlates[0].letters,p.letters);
+  		plates[p.plateCode].cityPlates[0].number = p.number;
+		//private count
+		plates[p.plateCode].plateCount++;
+		//global count
+  		plates[0].plateCount++;
+  		return flag;
+	}
+	//check same plate control
+	for(i=0; i < plates[p.plateCode].plateCount;i++)
+  	{
+  		if(plates[p.plateCode].cityPlates[i].plateCode == p.plateCode && 
+		strcmp(plates[p.plateCode].cityPlates[i].letters,p.letters) == 0 &&
+	  	plates[p.plateCode].cityPlates[i].number == p.number)
+	  	{
+	  		flag =0;
+	  		break;
+		}
+  	}
+    //add new plate
+	if(flag)
+	{
+		plates[p.plateCode].cityPlates = (plateInfo*)realloc(plates[p.plateCode].cityPlates,sizeof(plateInfo)*1);
+		plates[p.plateCode].cityPlates[plates[p.plateCode].plateCount].plateCode =p.plateCode; 
+		strcpy(plates[p.plateCode].cityPlates[plates[p.plateCode].plateCount].letters , p.letters); 
+		plates[p.plateCode].cityPlates[plates[p.plateCode].plateCount].number = p.number;
+		//private count
+		plates[p.plateCode].plateCount++;
+		//global count
+  		plates[0].plateCount++;
+	}
+	return flag;
+}
 
 void display(plates *plates)
 {

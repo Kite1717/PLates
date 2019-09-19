@@ -45,6 +45,34 @@ int checkDigit(char *s)
 	}
 	return  flag;	
 }
+void listingByPlateCode(plates * plates)
+{
+	char temp[100];
+	while(1)
+	{
+		
+		printf("\nEnter the plate code for listing  range -> [1,81]\n");
+		scanf("%s",temp);
+		if(checkDigit(temp))
+		{
+			int pCode = atoi(temp);
+			if(pCode >= 1 && pCode <=81)
+			{
+				int j;
+				printf("\n----------------------------------\n");
+		        printf("The total number of units from %d plate count : %d",pCode,plates[pCode].plateCount);
+ 		        for(j = 0; j < plates[pCode].plateCount;j++)
+		        {	
+			    printf("\n%d %s %d",plates[pCode].cityPlates[j].plateCode,plates[pCode].cityPlates[j].letters,plates[pCode].cityPlates[j].number);
+		        }
+		        printf("\n----------------------------------\n");
+		        break;
+			}
+		
+		}
+	}
+	
+}
 
 main()
 {

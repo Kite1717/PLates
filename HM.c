@@ -17,6 +17,35 @@ typedef struct plates
 	plateInfo *cityPlates;
 }
 plates;
+
+int checkAlphabet(char *s)
+{
+	int i,flag = 1;
+	for(i = 0; s[i] != '\0';i++)
+	{
+		if(!isalpha(s[i]))
+		{
+		 flag = 0;	
+		 break;
+		}
+	}
+	return  flag;
+}
+
+int checkDigit(char *s)
+{
+	int i,flag = 1;
+	for(i = 0; s[i] != '\0';i++)
+	{
+		if(!isdigit(s[i]))
+		{
+			flag = 0;	
+			break;
+		}
+	}
+	return  flag;	
+}
+
 main()
 {
 	//plates array

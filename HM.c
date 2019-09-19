@@ -73,6 +73,56 @@ void listingByPlateCode(plates * plates)
 	}
 	
 }
+
+plateInfo input()
+{
+	plateInfo *p = (plateInfo*)calloc(1,(sizeof(plateInfo)));
+    // I get the plate code
+	while(1)
+	{
+		//I'm checking whether it contains only the number of entries received
+		char temp[100];
+		printf("\nEnter Plate Code : range -> [1,81]\n");
+		scanf("%s",temp);
+		if(atoi(temp) !=0 && checkDigit(temp)) 
+		{
+			p->plateCode = atoi(temp);
+			if(p->plateCode <=81 && p->plateCode >=1) //between 1 and 81
+			break;
+		}
+	}
+	//I get the plate letters
+	while(1)
+	{
+		char temp[100];
+		puts("\nEnter Plate Letter : len -> [2,3]");
+	    scanf("%s",temp);
+	    if(checkAlphabet(temp))//if it contains only letters
+	    {
+	    	strcpy(p->letters,temp);
+			if(strlen(p->letters) >= 2 && strlen(p->letters) <= 3 )//strlen is between 2 and 3
+			{
+				strupr(p->letters); // upper string
+				break;
+			}
+     	}
+	}
+	//I get the plate number
+	while(1)
+	{
+		char temp[100];
+		printf("\nEnter Plate Number : range -> [10,9999]\n");
+		scanf("%s",temp);
+		if(atoi(temp) !=0 && checkDigit(temp)) //  the same logic with the plate code 
+		{
+			p->number = atoi(temp);
+			if(p->number <=9999 && p->number >=10) //between 10 and 9999
+			break; 
+		}
+	}
+	return *p;
+}
+
 void display(plates *plates)
 {
 	int i,j;

@@ -73,6 +73,24 @@ void listingByPlateCode(plates * plates)
 	}
 	
 }
+void display(plates *plates)
+{
+	int i,j;
+	printf("\n----------------------------------\n");
+	printf("\nTotal plate count : %d\n",plates[0].plateCount);	
+	printf("\n----------------------------------\n");
+	for(i = 1; i< 82;i++)
+	{
+		if(plates[i].plateCount == 0)continue;
+		printf("\n----------------------------------\n");
+		printf("The total number of units from %d plate count : %d",i,plates[i].plateCount);
+ 		for(j = 0; j < plates[i].plateCount;j++)
+		{	
+			printf("\n%d %s %d",plates[i].cityPlates[j].plateCode,plates[i].cityPlates[j].letters,plates[i].cityPlates[j].number);
+		}
+		printf("\n----------------------------------\n");
+	}	
+}
 
 main()
 {
